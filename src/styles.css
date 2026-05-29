@@ -1,0 +1,34 @@
+/* Waqftech Markdown Editor — Classical Typography CSS Styles */
+
+.quran-verse {
+    font-family: var(--font-quran, "Amiri Quran", "Amiri", serif);
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--waqf-color-quran, #166534); /* default emerald-800 */
+    line-height: 2;
+    padding: 0 0.15em;
+}
+
+.hadith-inline {
+    font-family: var(--font-amiri, "Amiri", serif);
+    font-weight: 700;
+    color: var(--waqf-color-hadith, #78350f); /* default amber-900 */
+    padding: 0 0.1em;
+}
+
+.prophet-symbol,
+.allah-symbol,
+.bismillah-symbol {
+    color: var(--waqf-color-symbol, #d97706); /* default amber-600 */
+    font-weight: 700;
+}
+
+.bismillah-symbol {
+    font-family: var(--font-amiri, "Amiri", serif);
+    font-size: 1.35em;
+}
+
+.rub-el-hizb-symbol {
+    color: var(--waqf-color-quran, #166534); /* default emerald-800 */
+    font-weight: 700;
+}

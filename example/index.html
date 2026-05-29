@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waqftech Markdown Editor Example</title>
+    <!-- Tailwind CDN for pure zero-config playground styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Amiri and Amiri Quran classical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --font-amiri: 'Amiri', serif;
+        --font-quran: 'Amiri', serif; /* Amiri is used as fallback for Quranic rendering */
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-100 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
