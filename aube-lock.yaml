@@ -1,0 +1,262 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+time:
+  '@comark/react@0.3.1': 2026-04-24T10:22:48.019Z
+  '@types/linkify-it@5.0.0': 2024-05-01T18:07:46.092Z
+  '@types/mdurl@2.0.0': 2024-05-01T18:08:10.612Z
+  '@types/react-dom@19.2.3': 2025-11-12T04:37:39.524Z
+  '@types/react@19.2.15': 2026-05-19T17:49:36.846Z
+  argparse@2.0.1: 2020-08-28T21:14:26.713Z
+  comark@0.3.2: 2026-04-29T15:56:21.015Z
+  csstype@3.2.3: 2025-11-17T11:42:27.045Z
+  dom-serializer@3.1.1: 2026-05-02T11:26:46.442Z
+  domelementtype@3.0.0: 2026-03-17T13:24:53.000Z
+  domhandler@6.0.1: 2026-03-17T16:24:50.639Z
+  domutils@4.0.2: 2026-03-18T16:43:40.866Z
+  entities@7.0.1: 2026-01-21T13:46:30.165Z
+  entities@8.0.0: 2026-03-17T11:47:45.464Z
+  htmlparser2@12.0.0: 2026-03-20T23:08:39.985Z
+  js-yaml@4.1.1: 2025-11-12T15:18:03.524Z
+  linkify-it@5.0.1: 2026-05-23T13:17:46.516Z
+  lucide-react@1.17.0: 2026-05-28T08:23:05.445Z
+  markdown-exit@1.0.0-beta.9: 2026-03-04T07:50:20.467Z
+  mdurl@2.0.0: 2023-12-01T05:03:40.542Z
+  punycode.js@2.3.1: 2023-10-30T18:28:36.491Z
+  react@19.2.6: 2026-05-06T16:16:47.653Z
+  typescript@6.0.3: 2026-04-16T23:38:27.905Z
+  uc.micro@2.1.0: 2024-03-02T17:44:53.816Z
+
+importers:
+
+  .:
+    dependencies:
+      '@comark/react':
+        specifier: ^0.3.1
+        version: 0.3.1(react@19.2.6)
+      comark:
+        specifier: ^0.3.2
+        version: 0.3.2
+      lucide-react:
+        specifier: ^1.17.0
+        version: 1.17.0(react@19.2.6)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.6
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.15
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.15)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+
+packages:
+
+  '@comark/react@0.3.1':
+    resolution: {integrity: sha512-72u0bZMA8Zq/2M6IC7AU6IQTJ68cAS6C+tV6JLEpbNY4GilPFPIUr1E8Ga7f3MR4jgZq25uGrt5PFFS/JjAodQ==}
+    peerDependencies:
+      beautiful-mermaid: ^1.1.3
+      katex: ^0.16.45
+      react: ^19.0.0
+      shiki: ^4.0.0
+    peerDependenciesMeta:
+      beautiful-mermaid:
+        optional: true
+      katex:
+        optional: true
+      shiki:
+        optional: true
+
+  '@types/linkify-it@5.0.0':
+    resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
+
+  '@types/mdurl@2.0.0':
+    resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
+
+  '@types/react-dom@19.2.3':
+    resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
+    peerDependencies:
+      '@types/react': ^19.2.0
+
+  '@types/react@19.2.15':
+    resolution: {integrity: sha512-eRwcGNHve+E8qtEQSSRl6urh+rFop4v8gm6O8rGv25CodbvFdLjA1vVQ1KkiFE0w0UPOnb8tDiFKL5lp0rtY5Q==}
+
+  argparse@2.0.1:
+    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  comark@0.3.2:
+    resolution: {integrity: sha512-wZ16V3PPItX49EScg6yDswqQ24bsMAhujZUGIf1dBKMmZjqGBa4HmXDe+WZNeqNQSOd8v4AJJT1NKyrvgdf3dA==}
+    peerDependencies:
+      beautiful-mermaid: ^1.1.3
+      katex: ^0.16.45
+      shiki: ^4.0.0
+    peerDependenciesMeta:
+      beautiful-mermaid:
+        optional: true
+      katex:
+        optional: true
+      shiki:
+        optional: true
+
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  dom-serializer@3.1.1:
+    resolution: {integrity: sha512-4MEa38/QexBob6gFNwu+EGdWvhJ1OKuNwdYY3Y3NyeWDQfnGeDYQUDfIRzWu5B5gsv03so2Uxd28YC6zrsx3Lw==}
+    engines: {node: '>=20.19.0'}
+
+  domelementtype@3.0.0:
+    resolution: {integrity: sha512-umCQid3jKbDmVjx8jGaW7uUykm4DEUeyV21hPxNMo2nV955DhUThwqyOIDtreepP31hl84X7G5U9ZfsWvIB3Pg==}
+    engines: {node: '>=20.19.0'}
+
+  domhandler@6.0.1:
+    resolution: {integrity: sha512-gYzvtM72ZtxQO0T048kd6HWSbbGCNOUwcnfQ01cqIJ4X2IYKFFHZ5mKvrQETcFXxsRObZulDaKmy//R7TPtsBg==}
+    engines: {node: '>=20.19.0'}
+
+  domutils@4.0.2:
+    resolution: {integrity: sha512-qI4JLRKnSzqFqr7hAlS5xQDusBCjKSEG4t4+7aNrIQMHBcsC2TGEhuyABJdYkgSewL57PNLYEiibY2iPKhKpaA==}
+    engines: {node: '>=20.19.0'}
+
+  entities@7.0.1:
+    resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
+    engines: {node: '>=0.12'}
+
+  entities@8.0.0:
+    resolution: {integrity: sha512-zwfzJecQ/Uej6tusMqwAqU/6KL2XaB2VZ2Jg54Je6ahNBGNH6Ek6g3jjNCF0fG9EWQKGZNddNjU5F1ZQn/sBnA==}
+    engines: {node: '>=20.19.0'}
+
+  htmlparser2@12.0.0:
+    resolution: {integrity: sha512-Tz7u1i95/g2x2jz81+x0FBVhBhY5aRTvD3tXXdFaljuNdzDLJ8UGNRrTcj2cgQvAg3iW/h77Fz15nLW0L0CrZw==}
+    engines: {node: '>=20.19.0'}
+
+  js-yaml@4.1.1:
+    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
+    hasBin: true
+
+  linkify-it@5.0.1:
+    resolution: {integrity: sha512-wVoTjP4Q6R0NW5hiZkVJaFZPWgtXfoGF+6LucL3/FtiNjmcHhYjEr5f1Kqjirc1nBW07J/ZuRFumqr2oqccEWg==}
+
+  lucide-react@1.17.0:
+    resolution: {integrity: sha512-9FA9evdox/JQL5PT57fdA1x/yg8T7knJ98+zjTL3UfKza6pflQUUh3XtaQIHKvnsJw1lmsEyHVlt5jchYxOQ5w==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  markdown-exit@1.0.0-beta.9:
+    resolution: {integrity: sha512-5tzrMKMF367amyBly131vm6eGuWRL2DjBqWaFmPzPbLyuxP0XOmyyyroOAIXuBAMF/3kZbbfqOxvW/SotqKqbQ==}
+
+  mdurl@2.0.0:
+    resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
+
+  punycode.js@2.3.1:
+    resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
+    engines: {node: '>=6'}
+
+  react@19.2.6:
+    resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
+    engines: {node: '>=0.10.0'}
+
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  uc.micro@2.1.0:
+    resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
+
+snapshots:
+
+  '@comark/react@0.3.1(react@19.2.6)':
+    dependencies:
+      comark: 0.3.2
+      react: 19.2.6
+
+  '@types/linkify-it@5.0.0': {}
+
+  '@types/mdurl@2.0.0': {}
+
+  '@types/react-dom@19.2.3(@types/react@19.2.15)':
+    dependencies:
+      '@types/react': 19.2.15
+
+  '@types/react@19.2.15':
+    dependencies:
+      csstype: 3.2.3
+
+  argparse@2.0.1: {}
+
+  comark@0.3.2:
+    dependencies:
+      entities: 8.0.0
+      htmlparser2: 12.0.0
+      js-yaml: 4.1.1
+      markdown-exit: 1.0.0-beta.9
+
+  csstype@3.2.3: {}
+
+  dom-serializer@3.1.1:
+    dependencies:
+      domelementtype: 3.0.0
+      domhandler: 6.0.1
+      entities: 8.0.0
+
+  domelementtype@3.0.0: {}
+
+  domhandler@6.0.1:
+    dependencies:
+      domelementtype: 3.0.0
+
+  domutils@4.0.2:
+    dependencies:
+      dom-serializer: 3.1.1
+      domelementtype: 3.0.0
+      domhandler: 6.0.1
+
+  entities@7.0.1: {}
+
+  entities@8.0.0: {}
+
+  htmlparser2@12.0.0:
+    dependencies:
+      domelementtype: 3.0.0
+      domhandler: 6.0.1
+      domutils: 4.0.2
+      entities: 8.0.0
+
+  js-yaml@4.1.1:
+    dependencies:
+      argparse: 2.0.1
+
+  linkify-it@5.0.1:
+    dependencies:
+      uc.micro: 2.1.0
+
+  lucide-react@1.17.0(react@19.2.6):
+    dependencies:
+      react: 19.2.6
+
+  markdown-exit@1.0.0-beta.9:
+    dependencies:
+      '@types/linkify-it': 5.0.0
+      '@types/mdurl': 2.0.0
+      entities: 7.0.1
+      linkify-it: 5.0.1
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
+
+  mdurl@2.0.0: {}
+
+  punycode.js@2.3.1: {}
+
+  react@19.2.6: {}
+
+  typescript@6.0.3: {}
+
+  uc.micro@2.1.0: {}

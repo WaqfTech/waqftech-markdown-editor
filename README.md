@@ -45,11 +45,13 @@ This repository includes a completely self-contained interactive playground powe
 # Navigate to the example directory
 cd waqftech-markdown-editor/example
 
-# Install dependencies
-aube install # or pnpm install / npm install
+# Install dependencies (aube is preferred; pnpm is also supported)
+aube install
+# or: pnpm install
 
 # Start the local development server
-aubr dev # or pnpm dev / npm run dev
+aube run dev
+# or: pnpm dev
 ```
 
 Open `http://localhost:3001` in your browser to try out the editor and see real-time Arabic typesetting in action!
@@ -61,14 +63,11 @@ Open `http://localhost:3001` in your browser to try out the editor and see real-
 Install the package and its peer dependencies via your favorite package manager:
 
 ```bash
-# Using npm
-npm install waqftech-markdown-editor comark @comark/react lucide-react
+# Using aube (preferred)
+aube add waqftech-markdown-editor comark @comark/react lucide-react
 
 # Using pnpm
 pnpm add waqftech-markdown-editor comark @comark/react lucide-react
-
-# Using yarn
-yarn add waqftech-markdown-editor comark @comark/react lucide-react
 ```
 
 ---

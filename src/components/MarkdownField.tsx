@@ -1,19 +1,55 @@
 import React, { useRef, useState } from 'react';
-import { defineComarkComponent } from '@comark/react';
+import { ComarkClient } from '@comark/react';
 import security from '@comark/react/plugins/security';
 import breaks from '@comark/react/plugins/breaks';
 import { MarkdownToolbar, applyMarkdownAction } from './MarkdownToolbar.js';
 import { inlineIslamicText } from '../plugins/inlineIslamicText.js';
 
-// A lightweight, secure out-of-the-box Comark markdown renderer
-export const DefaultMarkdownRenderer = defineComarkComponent({
-  name: 'DefaultMarkdownRenderer',
-  plugins: [
-    security({ blockedTags: ['script', 'iframe'] }),
-    breaks(),
-    inlineIslamicText(),
-  ],
-} as any);
+// ── Block directive components for Comark AST ───────────────────────────────
+// Comark parses ::ayah{reference="..."} ... :: into an AST node tagged 'ayah'.
+// Without a registered component it falls back to a raw <ayah> HTML tag,
+// which React warns about. These components provide proper rendering.
+
+const AyahBlock = ({ reference, children }: { reference?: string; children?: React.ReactNode }) => (
+  <div className="quran-verse my-4 p-4 border-r-4 border-emerald-700 bg-emerald-50/40 rounded">
+    <div className="leading-loose">{children}</div>
+    {reference && (
+      <div className="mt-2 text-sm text-emerald-700/80 font-medium">
+        — {reference}
+      </div>
+    )}
+  </div>
+);
+
+const HadithBlock = ({ grading, children }: { grading?: string; children?: React.ReactNode }) => (
+  <div className="hadith-inline my-4 p-4 border-r-4 border-amber-700 bg-amber-50/30 rounded">
+    <div className="leading-relaxed">{children}</div>
+    {grading && (
+      <div className="mt-2 text-sm text-amber-700/80 font-medium">
+        — {grading}
+      </div>
+    )}
+  </div>
+);
+
+// A lightweight, secure client-safe Comark markdown renderer.
+// Uses ComarkClient (not the async Server Component Comark) to stay compatible
+// with client-side React 19 where async components are forbidden.
+export const DefaultMarkdownRenderer = (props: React.ComponentProps<typeof ComarkClient>) => (
+  <ComarkClient
+    {...props}
+    plugins={[
+      security({ blockedTags: ['script', 'iframe'] }),
+      breaks(),
+      inlineIslamicText(),
+    ]}
+    components={{
+      ayah: AyahBlock,
+      hadith: HadithBlock,
+      ...(props.components || {}),
+    }}
+  />
+);
 
 export const MarkdownField = ({
   label,
