@@ -62,6 +62,9 @@ export const MarkdownField = ({
   error,
   showPreview = false,
   customRenderer: CustomRenderer,
+  minHeight = 120,
+  maxHeight = 600,
+  autoExpand = true,
 }: {
   label: string;
   value: string;
@@ -73,9 +76,22 @@ export const MarkdownField = ({
   error?: boolean | string;
   showPreview?: boolean;
   customRenderer?: React.ComponentType<{ children: string; className?: string }>;
+  minHeight?: string | number;
+  maxHeight?: string | number;
+  autoExpand?: boolean;
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const [previewMode, setPreviewMode] = useState(false);
+
+  // Automatically adjust textarea height based on content length
+  React.useEffect(() => {
+    if (!autoExpand || previewMode) return;
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  }, [value, autoExpand, previewMode]);
 
   const handleToolbarAction = (action: any) => {
     const textarea = textareaRef.current;
@@ -92,6 +108,9 @@ export const MarkdownField = ({
   };
 
   const Renderer = CustomRenderer || DefaultMarkdownRenderer;
+
+  const minHeightStyle = typeof minHeight === 'number' ? `${minHeight}px` : minHeight;
+  const maxHeightStyle = typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
 
   return (
     <div className="flex flex-col space-y-2 text-right" style={{ direction: dir }}>
@@ -147,7 +166,13 @@ export const MarkdownField = ({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
-            className={`w-full min-h-[120px] p-4 border-0 bg-transparent text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-0 leading-8 text-right resize-y ${className}`}
+            className={`w-full p-4 border-0 bg-transparent text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-0 leading-8 text-right ${
+              autoExpand ? 'resize-none' : 'resize-y'
+            } ${className}`}
+            style={{
+              minHeight: minHeightStyle,
+              maxHeight: maxHeightStyle,
+            }}
             dir={dir}
             lang="ar"
           />
