@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@waqftech/markdown-editor.svg)](https://www.npmjs.com/package/@waqftech/markdown-editor)
 [![License: WaqfDPL-Isnad 1.0](https://badgen.net/badge/License/WaqfDPL-Isnad%201.0/F2B85C)](WaqfDPL-1.0.md)
+[![Live Demo](https://img.shields.io/badge/Demo-Live--Preview-blue.svg)](https://markdown.waqf.dev/)
 
 ---
 
@@ -10,6 +11,8 @@
 محرر نصوص ماركداون (Markdown) خفيف، سريع الأداء، ومصمم خصيصاً للبيئات التعليمية والبحثية الإسلامية. يتميز بدعم مدمج و**تنسيق تلقائي فريد للنصوص والخطوط الإسلامية** (مثل الأقواس القرآنية، علامات التنصيص للحديث النبوي، والرموز والمنحوتات الكلاسيكية).
 
 تم تطوير هذا المحرر كجزء من منظومة **وقف تك** لخدمة المحتوى الإسلامي والتعليمي الرقمي، مما يتيح للكتّاب والباحثين صياغة محتواهم بشكل مريح وبدون الحاجة لتعلم أكواد برمجية معقدة.
+
+🔗 **التجربة الحية والمباشرة:** [markdown.waqf.dev](https://markdown.waqf.dev/)
 
 ---
 
@@ -174,6 +177,8 @@ export function LessonViewer({ markdownContent }: LessonViewerProps) {
 A lightweight, high-performance, and beautiful React Markdown Editor featuring out-of-the-box **natural Arabic Islamic typography** (automatic Ayah brackets, Hadith quotation rendering, and styled calligraphic symbols). 
 
 Developed as part of the Waqf Tech ecosystem, this editor provides a clean, two-row toolbar designed specifically for content authors, teachers, and developers building modern Islamic, scholarly, and educational platforms.
+
+🔗 **Live Interactive Demo:** [markdown.waqf.dev](https://markdown.waqf.dev/)
 
 ---
 
