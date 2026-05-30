@@ -80,40 +80,99 @@ export default function App() {
       </main>
 
       {/* Footer copyright */}
-      <footer className="mt-12 text-center text-xs text-zinc-400 border-t border-zinc-200 pt-6 space-y-2">
-        <p className="mb-1">
-          خاضع لشروط{' '}
-          <a
-            href="https://github.com/WaqfTech/waqf-license-draft"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-emerald-700 transition-colors"
-          >
-            رخصة وقف الرقمية العامة - الإصدار الأول 1447هـ (WaqfDPL-Isnad 1.0)
-          </a>
-        </p>
-        <p>
-          نُشر بواسطة مساهمي{' '}
-          <a
-            href="https://waqftech.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold underline hover:text-emerald-700 transition-colors"
-          >
-            وقف تك
-          </a>{' '}
-          - صدقة جارية لخدمة الأمة.
-        </p>
-        <p>
-          <a
-            href="https://github.com/WaqfTech/waqftech-markdown-editor"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-emerald-700 transition-colors"
-          >
-            مستودع الكود المصدري للمشروع على GitHub
-          </a>
-        </p>
+      <footer className="mt-12 text-center text-xs text-zinc-400 border-t border-zinc-200 pt-6 space-y-4">
+        {/* Arabic Footer Section (RTL) */}
+        <div dir="rtl" className="space-y-1.5">
+          <p>
+            خاضع لشروط{' '}
+            <a
+              href="https://github.com/WaqfTech/waqf-license-draft"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-700 transition-colors"
+            >
+              رخصة وقف الرقمية العامة - الإصدار الأول 1447هـ (WaqfDPL-Isnad 1.0)
+            </a>
+          </p>
+          <p>
+            نُشر بواسطة مساهمي{' '}
+            <a
+              href="https://waqftech.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline hover:text-emerald-700 transition-colors"
+            >
+              وقف تك
+            </a>{' '}
+            - صدقة جارية لخدمة الأمة.
+          </p>
+          <p>
+            مبني بتصرّف واعتماداً على مشروع{' '}
+            <a
+              href="https://github.com/ThisIs-Developer/Markdown-Viewer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-700 transition-colors"
+              dir="ltr"
+            >
+              Markdown-Viewer
+            </a>{' '}
+            مفتوح المصدر.
+          </p>
+        </div>
+
+        {/* Divider line for bilingual section */}
+        <div className="w-16 h-px bg-zinc-200 mx-auto"></div>
+
+        {/* English Footer Section (LTR) */}
+        <div dir="ltr" className="space-y-1.5">
+          <p>
+            Licensed under the{' '}
+            <a
+              href="https://github.com/WaqfTech/waqf-license-draft"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-700 transition-colors"
+            >
+              Waqf Digital Public License (WaqfDPL-Isnad 1.0)
+            </a>
+          </p>
+          <p>
+            Developed by contributors of{' '}
+            <a
+              href="https://waqftech.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline hover:text-emerald-700 transition-colors"
+            >
+              WaqfTech
+            </a>{' '}
+            — Ongoing charity serving the community.
+          </p>
+          <p>
+            Proudly based on the open-source{' '}
+            <a
+              href="https://github.com/ThisIs-Developer/Markdown-Viewer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-700 transition-colors"
+            >
+              Markdown-Viewer
+            </a>{' '}
+            project.
+          </p>
+          <p>
+            View project source code on{' '}
+            <a
+              href="https://github.com/WaqfTech/waqftech-markdown-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-emerald-700 transition-colors"
+            >
+              GitHub
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );
