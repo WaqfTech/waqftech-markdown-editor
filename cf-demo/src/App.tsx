@@ -106,19 +106,6 @@ export default function App() {
             </a>{' '}
             - صدقة جارية لخدمة الأمة.
           </p>
-          <p>
-            مبني بتصرّف واعتماداً على مشروع{' '}
-            <a
-              href="https://github.com/ThisIs-Developer/Markdown-Viewer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-emerald-700 transition-colors"
-              dir="ltr"
-            >
-              Markdown-Viewer
-            </a>{' '}
-            مفتوح المصدر.
-          </p>
         </div>
 
         {/* Divider line for bilingual section */}
@@ -148,18 +135,6 @@ export default function App() {
               WaqfTech
             </a>{' '}
             — Ongoing charity serving the community.
-          </p>
-          <p>
-            Proudly based on the open-source{' '}
-            <a
-              href="https://github.com/ThisIs-Developer/Markdown-Viewer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-emerald-700 transition-colors"
-            >
-              Markdown-Viewer
-            </a>{' '}
-            project.
           </p>
           <p>
             View project source code on{' '}
