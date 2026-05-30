@@ -80,12 +80,39 @@ export default function App() {
       </main>
 
       {/* Footer copyright */}
-      <footer className="mt-12 text-center text-xs text-zinc-400 border-t border-zinc-200 pt-6">
+      <footer className="mt-12 text-center text-xs text-zinc-400 border-t border-zinc-200 pt-6 space-y-2">
         <p className="mb-1">
-          رخصة وقف الرقمية العامة - الإصدار الأول 1447هـ (WaqfDPL-Isnad 1.0)
+          خاضع لشروط{' '}
+          <a
+            href="https://github.com/WaqfTech/waqf-license-draft"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-emerald-700 transition-colors"
+          >
+            رخصة وقف الرقمية العامة - الإصدار الأول 1447هـ (WaqfDPL-Isnad 1.0)
+          </a>
         </p>
         <p>
-          نُشر بواسطة مساهمي **وقف تك** - صدقة جارية لخدمة الأمة.
+          نُشر بواسطة مساهمي{' '}
+          <a
+            href="https://waqftech.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold underline hover:text-emerald-700 transition-colors"
+          >
+            وقف تك
+          </a>{' '}
+          - صدقة جارية لخدمة الأمة.
+        </p>
+        <p>
+          <a
+            href="https://github.com/WaqfTech/waqftech-markdown-editor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-emerald-700 transition-colors"
+          >
+            مستودع الكود المصدري للمشروع على GitHub
+          </a>
         </p>
       </footer>
     </div>
