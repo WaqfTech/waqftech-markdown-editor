@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { MarkdownField, DefaultMarkdownRenderer } from '@waqftech/markdown-editor';
 import '@waqftech/markdown-editor/styles.css';
 
-const DEFAULT_MARKDOWN = `# ﷽ تجربة محرّر الأوقاف الرقميّة
+const DEFAULT_MARKDOWN = `# ﷽ تجربة محرر وقف تك للنصوص الإسلامية
 
-مرحباً بك في محرّر النصوص البرمجية والتعليمية التابع لمنظومة **وقف تك**. يتيح هذا المحرّر تنسيق النصوص والآيات الكريمة والأحاديث الشريفة بطريقة طبيعية ومباشرة.
+مرحباً بك في محرر النصوص الإسلامية والتعليمية التابع لمنظومة **وقف تك**. يتيح هذا المحرّر تنسيق النصوص والآيات الكريمة والأحاديث الشريفة بطريقة طبيعية ومباشرة.
 
 ---
 
@@ -43,10 +43,10 @@ export default function App() {
       {/* Header card */}
       <header className="bg-white border-2 border-zinc-200 rounded p-6 mb-8 text-right shadow-sm" style={{ direction: 'rtl' }}>
         <h1 className="text-2xl md:text-3xl font-bold text-zinc-800 mb-2">
-          محرر وقف تك الرقمي ۞
+          محرر وقف تك للنصوص الإسلامية ۞
         </h1>
         <p className="text-sm md:text-base text-zinc-500">
-          نسخة تجريبية تفاعلية لتشغيل المحرّر المستقل (Waqftech Markdown Editor) مع التنسيق الإسلامي التلقائي.
+          نسخة تجريبية تفاعلية لتشغيل محرر النصوص الإسلامية المستقل (WaqfTech Markdown Editor) مع التنسيق التلقائي.
         </p>
       </header>
 
