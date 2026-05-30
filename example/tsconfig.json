@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "waqftech-markdown-editor": ["../src/index.ts"]
+      "@waqftech/markdown-editor": ["../src/index.ts"]
     }
   },
   "include": ["src/**/*"]

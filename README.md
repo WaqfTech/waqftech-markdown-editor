@@ -64,10 +64,10 @@ Install the package and its peer dependencies via your favorite package manager:
 
 ```bash
 # Using aube (preferred)
-aube add waqftech-markdown-editor comark @comark/react lucide-react
+aube add @waqftech/markdown-editor comark @comark/react lucide-react
 
 # Using pnpm
-pnpm add waqftech-markdown-editor comark @comark/react lucide-react
+pnpm add @waqftech/markdown-editor comark @comark/react lucide-react
 ```
 
 ---
@@ -80,10 +80,10 @@ Import the `<MarkdownField>` component and its styles into your React/TypeScript
 
 ```tsx
 import React, { useState } from 'react';
-import { MarkdownField } from 'waqftech-markdown-editor';
+import { MarkdownField } from '@waqftech/markdown-editor';
 
 // Import editor & custom typography styles
-import 'waqftech-markdown-editor/styles.css';
+import '@waqftech/markdown-editor/styles.css';
 
 export default function CourseContentEditor() {
   const [content, setContent] = useState('اكتب هنا... ﷽ وبشر المشاهدين.');
@@ -109,8 +109,8 @@ To render the saved markdown content elsewhere in your student-facing app with i
 
 ```tsx
 import React from 'react';
-import { DefaultMarkdownRenderer } from 'waqftech-markdown-editor';
-import 'waqftech-markdown-editor/styles.css';
+import { DefaultMarkdownRenderer } from '@waqftech/markdown-editor';
+import '@waqftech/markdown-editor/styles.css';
 
 interface LessonViewerProps {
   markdownContent: string;

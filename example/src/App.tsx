@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { MarkdownField, DefaultMarkdownRenderer } from 'waqftech-markdown-editor';
-import 'waqftech-markdown-editor/styles.css';
+import { MarkdownField, DefaultMarkdownRenderer } from '@waqftech/markdown-editor';
+import '@waqftech/markdown-editor/styles.css';
 
 const DEFAULT_MARKDOWN = `# ﷽ تجربة محرّر الأوقاف الرقميّة
 

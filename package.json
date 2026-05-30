@@ -1,5 +1,5 @@
 {
-  "name": "waqftech-markdown-editor",
+  "name": "@waqftech/markdown-editor",
   "version": "1.0.0",
   "description": "A lightweight, beautiful React markdown editor featuring natural Arabic Islamic typography (Ayah brackets, Hadith quotes, and styled ligatures like Bismillah, Jalla Jalaluh, Rub el Hizb, etc.). Built for the Waqf tech ecosystem.",
   "main": "dist/index.js",

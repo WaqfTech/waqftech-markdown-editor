@@ -5,26 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 time:
-  '@oxc-project/types@0.132.0': 2026-05-18T11:14:15.607Z
-  '@rolldown/binding-darwin-arm64@1.0.2': 2026-05-20T08:47:52.125Z
-  '@rolldown/binding-linux-arm64-gnu@1.0.2': 2026-05-20T08:47:46.042Z
-  '@rolldown/binding-linux-arm64-musl@1.0.2': 2026-05-20T08:47:57.560Z
-  '@rolldown/binding-linux-x64-gnu@1.0.2': 2026-05-20T08:47:17.201Z
-  '@rolldown/binding-linux-x64-musl@1.0.2': 2026-05-20T08:47:26.455Z
-  '@rolldown/binding-win32-arm64-msvc@1.0.2': 2026-05-20T08:48:14.375Z
-  '@rolldown/binding-win32-x64-msvc@1.0.2': 2026-05-20T08:47:09.601Z
-  '@rolldown/pluginutils@1.0.1': 2026-05-13T03:52:29.927Z
   '@vitejs/plugin-react@6.0.2': 2026-05-14T20:03:24.044Z
-  detect-libc@2.1.2: 2025-10-05T12:46:33.077Z
-  lightningcss-darwin-arm64@1.32.0: 2026-03-09T04:23:07.357Z
-  lightningcss-linux-arm64-gnu@1.32.0: 2026-03-09T04:23:18.594Z
-  lightningcss-linux-arm64-musl@1.32.0: 2026-03-09T04:23:21.203Z
-  lightningcss-linux-x64-gnu@1.32.0: 2026-03-09T04:23:24.274Z
-  lightningcss-linux-x64-musl@1.32.0: 2026-03-09T04:23:27.400Z
-  lightningcss-win32-arm64-msvc@1.32.0: 2026-03-09T04:23:30.176Z
-  lightningcss-win32-x64-msvc@1.32.0: 2026-03-09T04:23:33.073Z
-  lightningcss@1.32.0: 2026-03-09T04:23:43.754Z
-  rolldown@1.0.2: 2026-05-20T08:49:31.298Z
   typescript@6.0.3: 2026-04-16T23:38:27.905Z
   vite@8.0.14: 2026-05-21T07:16:03.179Z
 
@@ -35,6 +16,9 @@ importers:
       '@comark/react':
         specifier: ^0.3.1
         version: 0.3.1(react@19.2.6)
+      '@waqftech/markdown-editor':
+        specifier: file:..
+        version: file:..
       comark:
         specifier: ^0.3.2
         version: 0.3.2
@@ -47,9 +31,6 @@ importers:
       react-dom:
         specifier: ^19.2.6
         version: 19.2.6(react@19.2.6)
-      waqftech-markdown-editor:
-        specifier: file:..
-        version: file:..
     devDependencies:
       '@types/react':
         specifier: ^19.0.0
@@ -180,6 +161,9 @@ packages:
         optional: true
       babel-plugin-react-compiler:
         optional: true
+
+  '@waqftech/markdown-editor@file:..':
+    resolution: {directory: .., type: directory}
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -430,9 +414,6 @@ packages:
       yaml:
         optional: true
 
-  waqftech-markdown-editor@file:..:
-    resolution: {directory: .., type: directory}
-
 snapshots:
 
   '@comark/react@0.3.1(react@19.2.6)':
@@ -474,6 +455,12 @@ snapshots:
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.0.14
+
+  '@waqftech/markdown-editor@file:..':
+    dependencies:
+      '@comark/react': 0.3.1(react@19.2.6)
+      comark: 0.3.2
+      lucide-react: 1.17.0(react@19.2.6)
 
   argparse@2.0.1: {}
 
@@ -630,9 +617,3 @@ snapshots:
       tinyglobby: 0.2.16(picomatch@4.0.4)
     optionalDependencies:
       fsevents: 2.3.3
-
-  waqftech-markdown-editor@file:..:
-    dependencies:
-      '@comark/react': 0.3.1(react@19.2.6)
-      comark: 0.3.2
-      lucide-react: 1.17.0(react@19.2.6)
