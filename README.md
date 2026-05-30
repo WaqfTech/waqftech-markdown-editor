@@ -1,7 +1,7 @@
 # محرر وقف تك للنصوص الإسلامية | WaqfTech Islamic Text Editor
 
 [![npm version](https://img.shields.io/npm/v/@waqftech/markdown-editor.svg)](https://www.npmjs.com/package/@waqftech/markdown-editor)
-[![License](https://img.shields.io/badge/License-WaqfDPL--Isnad--1.0-emerald.svg)](WaqfDPL-1.0.md)
+[![License: WaqfDPL-Isnad 1.0](https://badgen.net/badge/License/WaqfDPL-Isnad%201.0/F2B85C)](WaqfDPL-1.0.md)
 
 ---
 
