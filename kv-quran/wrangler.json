@@ -1,0 +1,12 @@
+{
+  "name": "kv-quran",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-04-03",
+  "kv_namespaces": [
+    {
+      "binding": "QURAN_KV",
+      "id": "42e6b860d0cd4527a6b2a577ef86afda",
+      "preview_id": "42e6b860d0cd4527a6b2a577ef86afda"
+    }
+  ]
+}
