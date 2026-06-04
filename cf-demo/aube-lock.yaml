@@ -9,7 +9,6 @@ time:
   '@types/react-dom@19.2.3': 2025-11-12T04:37:39.524Z
   '@types/react@19.2.15': 2026-05-19T17:49:36.846Z
   '@vitejs/plugin-react@6.0.2': 2026-05-14T20:03:24.044Z
-  '@waqftech/markdown-editor@1.0.0': 2026-05-30T13:50:42.517Z
   comark@0.3.2: 2026-04-29T15:56:21.015Z
   lucide-react@1.17.0: 2026-05-28T08:23:05.445Z
   react-dom@19.2.6: 2026-05-06T16:16:56.080Z
@@ -25,8 +24,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1(react@19.2.6)
       '@waqftech/markdown-editor':
-        specifier: ^1.0.0
-        version: 1.0.0(react@19.2.6)(react-dom@19.2.6(react@19.2.6))
+        specifier: file:..
+        version: file:..
       comark:
         specifier: ^0.3.2
         version: 0.3.2
@@ -170,11 +169,8 @@ packages:
       babel-plugin-react-compiler:
         optional: true
 
-  '@waqftech/markdown-editor@1.0.0':
-    resolution: {integrity: sha512-6njXo46gPVhRShzgwa0VAlgXWCbSUPXAXxv03Byk2gV1unjhITtdbDOXELrlvTFEigjZWnGekhqPuei66XD5gQ==}
-    peerDependencies:
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
+  '@waqftech/markdown-editor@file:..':
+    resolution: {directory: .., type: directory}
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -467,13 +463,11 @@ snapshots:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.0.14
 
-  '@waqftech/markdown-editor@1.0.0(react@19.2.6)(react-dom@19.2.6(react@19.2.6))':
+  '@waqftech/markdown-editor@file:..':
     dependencies:
       '@comark/react': 0.3.1(react@19.2.6)
       comark: 0.3.2
       lucide-react: 1.17.0(react@19.2.6)
-      react: 19.2.6
-      react-dom: 19.2.6(react@19.2.6)
 
   argparse@2.0.1: {}
 
