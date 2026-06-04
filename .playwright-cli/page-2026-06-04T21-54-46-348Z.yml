@@ -1,0 +1,71 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - heading "محرر وقف تك للنصوص الإسلامية ۞" [level=1] [ref=e5]
+    - paragraph [ref=e6]: نسخة تجريبية تفاعلية لتشغيل محرر النصوص الإسلامية المستقل (WaqfTech Markdown Editor) مع التنسيق التلقائي.
+  - main [ref=e7]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: محرر المحتوى النصي والدعوي
+        - generic [ref=e12]:
+          - button "تحرير" [ref=e13] [cursor=pointer]
+          - button "معاينة" [ref=e14] [cursor=pointer]
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - button "عنوان رئيسي (H2)" [ref=e18] [cursor=pointer]:
+              - img [ref=e19]
+            - button "عنوان فرعي (H3)" [ref=e21] [cursor=pointer]:
+              - img [ref=e22]
+            - button "عنوان صغير (H4)" [ref=e25] [cursor=pointer]:
+              - img [ref=e26]
+            - button "نص غامق" [ref=e29] [cursor=pointer]:
+              - img [ref=e30]
+            - button "نص مائل" [ref=e32] [cursor=pointer]:
+              - img [ref=e33]
+            - button "قائمة نقطية" [ref=e36] [cursor=pointer]:
+              - img [ref=e37]
+            - button "قائمة مرقمة" [ref=e38] [cursor=pointer]:
+              - img [ref=e39]
+            - button "اقتباس" [ref=e43] [cursor=pointer]:
+              - img [ref=e44]
+            - button "رابط" [ref=e47] [cursor=pointer]:
+              - img [ref=e48]
+            - button "خط فاصل" [ref=e51] [cursor=pointer]:
+              - img [ref=e52]
+          - generic [ref=e53]:
+            - generic [ref=e54]: "التنسيق الإسلامي:"
+            - button "﴿ ﴾" [ref=e55] [cursor=pointer]
+            - button "« »" [ref=e56] [cursor=pointer]
+            - button "ﷺ" [ref=e58] [cursor=pointer]
+            - button "ﷲ" [ref=e59] [cursor=pointer]
+            - button "ﷻ" [ref=e60] [cursor=pointer]
+            - button "﷽" [ref=e61] [cursor=pointer]
+            - button "۞" [ref=e62] [cursor=pointer]
+        - textbox "اكتب هنا بالتفصيل..." [ref=e63]: "# ﷽ تجربة محرر وقف تك للنصوص الإسلامية مرحباً بك في محرر النصوص الإسلامية والتعليمية التابع لمنظومة **وقف تك**. يتيح هذا المحرّر تنسيق النصوص والآيات الكريمة والأحاديث الشريفة بطريقة طبيعية ومباشرة. --- ## ١. الآيات القرآنية الكريمة (﴿ ﴾) عند كتابة الآيات بين الأقواس المخصصة ﴿﴾، يتم تنسيقها تلقائياً بخط قُرآني مميز ولون أخضر لائق بهيبة النص القرآني: ﴿إِنَّ هَذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ﴾ ## ٢. الأحاديث النبوية الشريفة (« ») تُنسق الأحاديث النبوية الموضوعة بين علامتي التنصيص «» بخط أميري عريض دافئ يناسب النصوص الأكاديمية والشريفة: «الدِّينُ النَّصِيحَةُ» --- ## ٣. الرموز والمنحوتات الإسلامية المباشرة يمكنك بنقرة واحدة إدراج الرموز والمنحوتات الإسلامية الأكثر استخداماً: * اسم الجلالة: ﷲ (ﷻ) * الصلاة على النبي: ﷺ * البسملة الكاملة: ﷽ * علامة الحزب القرآني: ۞ --- ## ٤. الكتل الهيكلية المتقدمة (HTML-like blocks) يدعم المحرّر أيضاً كتل الآيات والأحاديث المكتوبة بصيغة وسوم مألوفة، والتي يتم تحويلها تلقائياً إلى كتل منسقة مع إمكانية ذكر المرجع أو التخريج: <aya ref=\"سورة البقرة: ٢\">الم ۞ ذَلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِلْمُتَّقِينَ</aya> <hadith grading=\"متفق عليه\">إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى</hadith>"
+      - paragraph [ref=e64]: استخدم شريط الأدوات الإسلامي في الصف الثاني لإدراج علامات التشكيل، والآيات، والأحاديث، والمنحوتات الإسلامية الكلاسيكية مباشرة.
+    - generic [ref=e67]: المعاينة النهائية الكاملة (Output Display)
+  - contentinfo [ref=e70]:
+    - generic [ref=e71]:
+      - paragraph [ref=e72]:
+        - text: خاضع لشروط
+        - link "رخصة وقف الرقمية العامة - الإصدار الأول 1447هـ (WaqfDPL-Isnad 1.0)" [ref=e73] [cursor=pointer]:
+          - /url: https://github.com/WaqfTech/waqf-license-draft
+      - paragraph [ref=e74]:
+        - text: نُشر بواسطة مساهمي
+        - link "وقف تك" [ref=e75] [cursor=pointer]:
+          - /url: https://waqftech.org
+        - text: "- صدقة جارية لخدمة الأمة."
+    - generic [ref=e77]:
+      - paragraph [ref=e78]:
+        - text: Licensed under the
+        - link "Waqf Digital Public License (WaqfDPL-Isnad 1.0)" [ref=e79] [cursor=pointer]:
+          - /url: https://github.com/WaqfTech/waqf-license-draft
+      - paragraph [ref=e80]:
+        - text: Developed by contributors of
+        - link "WaqfTech" [ref=e81] [cursor=pointer]:
+          - /url: https://waqftech.org
+        - text: — Ongoing charity serving the community.
+      - paragraph [ref=e82]:
+        - text: View project source code on
+        - link "GitHub" [ref=e83] [cursor=pointer]:
+          - /url: https://github.com/WaqfTech/waqftech-markdown-editor
