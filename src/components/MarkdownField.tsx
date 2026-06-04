@@ -33,6 +33,40 @@ const parseQuery = (q: string) => {
   return { surah: null, ayahStr: '' };
 };
 
+// Helper to parse explicit slash commands (/quran, /surah)
+const parseCommand = (q: string) => {
+  const clean = q.replace(/^(quran|surah|قرآن|سورة)\s+/i, '').trim();
+
+  // Pattern A: range (e.g. "1:1-5" or "1/1-5")
+  const rangeMatch = clean.match(/^(\d+)[:/](\d+)-(\d+)$/);
+  if (rangeMatch) {
+    const surahNum = parseInt(rangeMatch[1], 10);
+    const startAyah = parseInt(rangeMatch[2], 10);
+    const endAyah = parseInt(rangeMatch[3], 10);
+    const surah = SURAH_LIST.find(s => s.number === surahNum);
+    return { type: 'range' as const, surah, startAyah, endAyah };
+  }
+
+  // Pattern B: single ayah (e.g. "1:2" or "1/2")
+  const singleMatch = clean.match(/^(\d+)[:/](\d+)$/);
+  if (singleMatch) {
+    const surahNum = parseInt(singleMatch[1], 10);
+    const ayahNum = parseInt(singleMatch[2], 10);
+    const surah = SURAH_LIST.find(s => s.number === surahNum);
+    return { type: 'single' as const, surah, ayahNum };
+  }
+
+  // Pattern C: full surah (e.g. "1")
+  const fullMatch = clean.match(/^(\d+)$/);
+  if (fullMatch) {
+    const surahNum = parseInt(fullMatch[1], 10);
+    const surah = SURAH_LIST.find(s => s.number === surahNum);
+    return { type: 'full' as const, surah };
+  }
+
+  return { type: 'none' as const, surah: null };
+};
+
 // ── Block directive components for Comark AST ───────────────────────────────
 // Comark parses ::ayah{reference="..."} ... :: into an AST node tagged 'ayah'.
 // Without a registered component it falls back to a raw <ayah> HTML tag,
@@ -132,7 +166,14 @@ export const MarkdownField = ({
   const parsed = parseQuery(menuState.query);
   const isStep2 = parsed.surah && (menuState.query.includes(':') || menuState.query.includes('/'));
 
-  const filteredSurahs = isStep2
+  // Detect slash/backslash commands (/quran, /surah, etc.)
+  const isCommand = menuState.query.toLowerCase().startsWith('q') ||
+                    menuState.query.toLowerCase().startsWith('s') ||
+                    menuState.query.startsWith('قرآن') ||
+                    menuState.query.startsWith('سورة');
+  const parsedCmd = parseCommand(menuState.query);
+
+  const filteredSurahs = (isStep2 || isCommand)
     ? []
     : SURAH_LIST.filter(s => {
         const q = menuState.query.toLowerCase();
@@ -145,6 +186,12 @@ export const MarkdownField = ({
       }).slice(0, 5);
 
   const getFilteredOptionsCount = () => {
+    if (isCommand) {
+      if (parsedCmd.type !== 'none' && parsedCmd.surah) {
+        return 1;
+      }
+      return 0;
+    }
     if (isStep2) {
       const ayahStr = parsed.ayahStr;
       const ayahNum = parseInt(ayahStr, 10);
@@ -200,8 +247,111 @@ export const MarkdownField = ({
     }
   };
 
+  const fetchAndInsertRange = async (surah: any, start: number, end: number) => {
+    if (start > end) {
+      setMenuState(prev => ({ ...prev, errorMessage: 'بداية النطاق يجب أن تكون أصغر من نهايته.' }));
+      return;
+    }
+    if (start < 1 || end > surah.numberOfAyahs) {
+      setMenuState(prev => ({ ...prev, errorMessage: `النطاق غير صحيح لهذه السورة (1 - ${surah.numberOfAyahs}).` }));
+      return;
+    }
+
+    setMenuState(prev => ({ ...prev, isLoading: true, errorMessage: '' }));
+    try {
+      const res = await fetch(`https://kv-quran.waqf.dev/api/surah/${surah.number}`);
+      if (!res.ok) {
+        throw new Error('فشل جلب السورة من الخادم.');
+      }
+      const data = await res.json();
+      const allVerses: any[] = data.verses;
+
+      // Filter verses in range
+      const rangeVerses = allVerses.filter(v => v.ayah >= start && v.ayah <= end);
+      const joinedText = rangeVerses.map(v => v.text).join(' ۞ ');
+
+      // Determine block vs inline formatting
+      const textBefore = value.slice(0, menuState.startIndex);
+      const lineStart = textBefore.lastIndexOf('\n') + 1;
+      const textOnLineBefore = textBefore.slice(lineStart);
+      const isNewLine = textOnLineBefore.trim() === '';
+
+      let replacement = '';
+      if (isNewLine) {
+        replacement = `::ayah{reference="سورة ${surah.name}: ${start}-${end}"}\n${joinedText}\n::\n`;
+      } else {
+        replacement = `﴿${joinedText}﴾ (سورة ${surah.name}: ${start}-${end})`;
+      }
+
+      const nextValue = value.slice(0, menuState.startIndex) + replacement + value.slice(menuState.endIndex);
+      onChange(nextValue);
+
+      const nextCursor = menuState.startIndex + replacement.length;
+      requestAnimationFrame(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          textareaRef.current.setSelectionRange(nextCursor, nextCursor);
+        }
+      });
+
+      setMenuState(prev => ({ ...prev, isOpen: false, isLoading: false }));
+    } catch (err: any) {
+      setMenuState(prev => ({
+        ...prev,
+        isLoading: false,
+        errorMessage: err.message || 'حدث خطأ غير متوقع.',
+      }));
+    }
+  };
+
+  const fetchAndInsertFullSurah = async (surah: any) => {
+    setMenuState(prev => ({ ...prev, isLoading: true, errorMessage: '' }));
+    try {
+      const res = await fetch(`https://kv-quran.waqf.dev/api/surah/${surah.number}`);
+      if (!res.ok) {
+        throw new Error('فشل جلب السورة من الخادم.');
+      }
+      const data = await res.json();
+      const allVerses: any[] = data.verses;
+      const joinedText = allVerses.map(v => v.text).join(' ۞ ');
+
+      // Full surah is always Block format
+      const replacement = `::ayah{reference="سورة ${surah.name} كاملة"}\n${joinedText}\n::\n`;
+
+      const nextValue = value.slice(0, menuState.startIndex) + replacement + value.slice(menuState.endIndex);
+      onChange(nextValue);
+
+      const nextCursor = menuState.startIndex + replacement.length;
+      requestAnimationFrame(() => {
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+          textareaRef.current.setSelectionRange(nextCursor, nextCursor);
+        }
+      });
+
+      setMenuState(prev => ({ ...prev, isOpen: false, isLoading: false }));
+    } catch (err: any) {
+      setMenuState(prev => ({
+        ...prev,
+        isLoading: false,
+        errorMessage: err.message || 'حدث خطأ غير متوقع.',
+      }));
+    }
+  };
+
   const handleSelectOption = (indexOverride?: number) => {
     const idx = indexOverride !== undefined ? indexOverride : menuState.selectedIndex;
+
+    if (isCommand) {
+      if (parsedCmd.type === 'single' && parsedCmd.surah && parsedCmd.ayahNum) {
+        fetchAndInsertAyah(parsedCmd.surah, parsedCmd.ayahNum);
+      } else if (parsedCmd.type === 'range' && parsedCmd.surah && parsedCmd.startAyah && parsedCmd.endAyah) {
+        fetchAndInsertRange(parsedCmd.surah, parsedCmd.startAyah, parsedCmd.endAyah);
+      } else if (parsedCmd.type === 'full' && parsedCmd.surah) {
+        fetchAndInsertFullSurah(parsedCmd.surah);
+      }
+      return;
+    }
 
     if (isStep2) {
       const { surah, ayahStr } = parsed;
@@ -243,18 +393,39 @@ export const MarkdownField = ({
 
     const textBeforeCursor = text.slice(0, cursor);
     const lastBackslashIndex = textBeforeCursor.lastIndexOf('\\');
+    const lastSlashIndex = textBeforeCursor.lastIndexOf('/');
 
-    if (lastBackslashIndex !== -1) {
-      const query = textBeforeCursor.slice(lastBackslashIndex + 1);
-      const charBeforeBackslash = lastBackslashIndex > 0 ? textBeforeCursor[lastBackslashIndex - 1] : '';
-      const isValidTrigger = lastBackslashIndex === 0 || /\s/.test(charBeforeBackslash);
+    let triggerIndex = -1;
+    let query = '';
+
+    if (lastBackslashIndex !== -1 && lastBackslashIndex >= lastSlashIndex) {
+      triggerIndex = lastBackslashIndex;
+      query = textBeforeCursor.slice(lastBackslashIndex + 1);
+    } else if (lastSlashIndex !== -1) {
+      const q = textBeforeCursor.slice(lastSlashIndex + 1);
+      const lowercaseQ = q.toLowerCase();
+      // For normal slash, only trigger if it starts with 'q', 's', 'قرآن', 'سورة'
+      if (
+        lowercaseQ.startsWith('q') ||
+        lowercaseQ.startsWith('s') ||
+        lowercaseQ.startsWith('قرآن') ||
+        lowercaseQ.startsWith('سورة')
+      ) {
+        triggerIndex = lastSlashIndex;
+        query = q;
+      }
+    }
+
+    if (triggerIndex !== -1) {
+      const charBeforeTrigger = triggerIndex > 0 ? textBeforeCursor[triggerIndex - 1] : '';
+      const isValidTrigger = triggerIndex === 0 || /\s/.test(charBeforeTrigger);
 
       if (isValidTrigger && !query.includes('\n')) {
         setMenuState(prev => ({
           ...prev,
           isOpen: true,
           query,
-          startIndex: lastBackslashIndex,
+          startIndex: triggerIndex,
           endIndex: cursor,
           selectedIndex: prev.query.includes(':') !== query.includes(':') ? 0 : prev.selectedIndex,
         }));
@@ -300,7 +471,7 @@ export const MarkdownField = ({
 
     if (e.key === 'Enter') {
       const count = getFilteredOptionsCount();
-      if (count > 0 || isStep2) {
+      if (count > 0 || isStep2 || (isCommand && parsedCmd.type !== 'none')) {
         e.preventDefault();
         handleSelectOption();
       }
@@ -399,10 +570,10 @@ export const MarkdownField = ({
                 ) : (
                   <Sparkles className="size-3.5 text-emerald-600 animate-pulse" />
                 )}
-                {isStep2 ? 'إدراج آية قرآنية - خطوة ٢' : 'إدراج آية قرآنية - خطوة ١'}
+                {isCommand ? 'أمر إدراج القرآن' : isStep2 ? 'إدراج آية قرآنية - خطوة ٢' : 'إدراج آية قرآنية - خطوة ١'}
               </span>
               <span className="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded-full">
-                {isStep2 ? 'رقم الآية' : 'اختر السورة'}
+                {isCommand ? 'أمر مخصص' : isStep2 ? 'رقم الآية' : 'اختر السورة'}
               </span>
             </div>
 
@@ -414,8 +585,87 @@ export const MarkdownField = ({
               </div>
             )}
 
+            {/* Command Parsing Content */}
+            {isCommand && (
+              <div className="flex flex-col space-y-1.5 p-1">
+                {parsedCmd.type !== 'none' && parsedCmd.surah ? (
+                  <div className="flex flex-col space-y-1.5">
+                    <div className="text-xs font-bold text-zinc-700 flex items-center gap-1.5 bg-zinc-50 p-2 rounded justify-start">
+                      <BookOpen className="size-4 text-emerald-600 shrink-0" />
+                      <span>سورة {parsedCmd.surah.name} ({parsedCmd.surah.numberOfAyahs} آية)</span>
+                    </div>
+
+                    {parsedCmd.type === 'single' && parsedCmd.ayahNum && (
+                      parsedCmd.ayahNum >= 1 && parsedCmd.ayahNum <= parsedCmd.surah.numberOfAyahs ? (
+                        <button
+                          type="button"
+                          onClick={() => handleSelectOption(0)}
+                          className={`w-full text-right px-3 py-2 text-xs rounded-md border font-semibold transition-all ${
+                            menuState.selectedIndex === 0
+                              ? 'bg-emerald-50 border-emerald-500 text-emerald-900 border-r-4 shadow-sm'
+                              : 'bg-white border-zinc-200 hover:bg-zinc-50 text-zinc-700'
+                          }`}
+                        >
+                          ✨ إدراج الآية {parsedCmd.ayahNum} من سورة {parsedCmd.surah.name} (Enter)
+                        </button>
+                      ) : (
+                        <div className="text-xs text-red-500 font-semibold p-2 bg-red-50/50 rounded flex items-center gap-1 justify-start">
+                          <AlertTriangle className="size-3.5 shrink-0" />
+                          <span>رقم الآية غير صحيح (الحد الأقصى {parsedCmd.surah.numberOfAyahs})</span>
+                        </div>
+                      )
+                    )}
+
+                    {parsedCmd.type === 'range' && parsedCmd.startAyah && parsedCmd.endAyah && (
+                      parsedCmd.startAyah >= 1 && parsedCmd.endAyah <= parsedCmd.surah.numberOfAyahs && parsedCmd.startAyah <= parsedCmd.endAyah ? (
+                        <button
+                          type="button"
+                          onClick={() => handleSelectOption(0)}
+                          className={`w-full text-right px-3 py-2 text-xs rounded-md border font-semibold transition-all ${
+                            menuState.selectedIndex === 0
+                              ? 'bg-emerald-50 border-emerald-500 text-emerald-900 border-r-4 shadow-sm'
+                              : 'bg-white border-zinc-200 hover:bg-zinc-50 text-zinc-700'
+                          }`}
+                        >
+                          ✨ إدراج النطاق {parsedCmd.startAyah}-{parsedCmd.endAyah} من سورة {parsedCmd.surah.name} (Enter)
+                        </button>
+                      ) : (
+                        <div className="text-xs text-red-500 font-semibold p-2 bg-red-50/50 rounded flex items-center gap-1 justify-start">
+                          <AlertTriangle className="size-3.5 shrink-0" />
+                          <span>نطاق آيات غير صحيح (الحد الأقصى {parsedCmd.surah.numberOfAyahs})</span>
+                        </div>
+                      )
+                    )}
+
+                    {parsedCmd.type === 'full' && (
+                      <button
+                        type="button"
+                        onClick={() => handleSelectOption(0)}
+                        className={`w-full text-right px-3 py-2 text-xs rounded-md border font-semibold transition-all ${
+                          menuState.selectedIndex === 0
+                            ? 'bg-emerald-50 border-emerald-500 text-emerald-900 border-r-4 shadow-sm'
+                            : 'bg-white border-zinc-200 hover:bg-zinc-50 text-zinc-700'
+                        }`}
+                      >
+                        ✨ إدراج سورة {parsedCmd.surah.name} كاملة (Enter)
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <div className="text-[11px] text-zinc-500 leading-relaxed bg-zinc-50 p-2.5 rounded border border-zinc-100/50">
+                    <p className="font-bold text-emerald-800 mb-1">تنسيق الأمر المدعوم:</p>
+                    <ul className="list-disc list-inside space-y-1 text-right" style={{ direction: 'rtl' }}>
+                      <li>آية واحدة: <code className="bg-white px-1 py-0.5 rounded border text-emerald-700 font-mono">/quran 1:2</code></li>
+                      <li>نطاق آيات: <code className="bg-white px-1 py-0.5 rounded border text-emerald-700 font-mono">/quran 1:1-5</code></li>
+                      <li>سورة كاملة: <code className="bg-white px-1 py-0.5 rounded border text-emerald-700 font-mono">/quran 1</code> أو <code className="bg-white px-1 py-0.5 rounded border text-emerald-700 font-mono">/surah 1</code></li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Step 2 Content */}
-            {isStep2 && parsed.surah && (
+            {!isCommand && isStep2 && parsed.surah && (
               <div className="flex flex-col space-y-1.5 p-1">
                 <div className="text-xs font-bold text-zinc-700 flex items-center gap-1.5 bg-zinc-50 p-2 rounded justify-start">
                   <BookOpen className="size-4 text-emerald-600 shrink-0" />
@@ -449,7 +699,7 @@ export const MarkdownField = ({
             )}
 
             {/* Step 1 Content */}
-            {!isStep2 && (
+            {!isCommand && !isStep2 && (
               <div className="flex flex-col space-y-0.5 max-h-56 overflow-y-auto">
                 {filteredSurahs.length > 0 ? (
                   filteredSurahs.map((surah, idx) => (
