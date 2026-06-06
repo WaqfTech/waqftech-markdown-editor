@@ -8,17 +8,19 @@
     "build": "tsc && vite build"
   },
   "dependencies": {
+    "@comark/react": "^0.3.1",
+    "@tailwindcss/vite": "^4.3.0",
+    "@waqftech/markdown-editor": "file:..",
+    "comark": "^0.3.2",
+    "lucide-react": "^1.17.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "comark": "^0.3.2",
-    "@comark/react": "^0.3.1",
-    "lucide-react": "^1.14.0",
-    "@waqftech/markdown-editor": "file:.."
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^6.0.2",
+    "@vitejs/plugin-react": "6.0.1",
     "typescript": "^6.0.3",
     "vite": "^8.0.14"
   }

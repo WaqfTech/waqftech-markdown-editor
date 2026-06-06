@@ -34,16 +34,23 @@
    * كتابة النصوص بين أقواس **`﴿ ﴾`** تحولها تلقائياً إلى نص قرآني منسق بخط الرسم العثماني ولون أخضر لائق.
    * كتابة النصوص بين علامات **`« »`** تحولها تلقائياً إلى نصوص أحاديث نبوية بخط أميري عريض دافئ.
    * تحويل وسوم الكتل التلقائي: يحول الكتل المكتوبة بصيغة الوسوم المألوفة `<aya ref="...">` و `<hadith grading="...">` إلى مكونات هيكلية جميلة مع عرض المراجع والتخريج بشكل لائق.
-3. **الرموز والمنحوتات الإسلامية المباشرة:**
+3. **إدراج الآيات القرآنية بقائمة سياقية موجَّهة:**
+   * اكتب **`\`** (شرطة مائلة خلفية) لفتح بحث فوري في أسماء السور وأرقامها، ثم اكتب رقم الآية لإدراجها مباشرة.
+   * اكتب **`/quran`** لتفتح قائمة سياقية ذات خطوات متعاقبة:
+     - اختر الوضع: **آية واحدة** · **نطاق آيات** · **سورة كاملة**
+     - ابحث عن السورة بالاسم أو الرقم
+     - أدخل الآية أو النطاق — يُدرج النص تلقائياً بصيغة كتلة أو مضمَّن بحسب السياق
+   * تدعم الأوامر المباشرة أيضاً: `/quran 2:255` · `/quran 2:1-5` · `/quran 1`
+4. **الرموز والمنحوتات الإسلامية المباشرة:**
    * **`ﷺ`** — صلى الله عليه وسلم
    * **`ﷲ`** — جل جلاله (لفظ الجلالة)
    * **`ﷻ`** — جلت قدرته
    * **`﷽`** — البسملة الكاملة
    * **`۞`** — علامة الحزب القرآني
-4. **المعاينة الفورية المدمجة:**
+5. **المعاينة الفورية المدمجة:**
    * يتضمن مكون عرض مدمج وآمن (`DefaultMarkdownRenderer`) يعتمد على مكتبة `comark` الفائقة السرعة.
    * يتنقل بسلاسة بين وضعي "التحرير" (تحرير) و"المعاينة" (معاينة) داخل نفس المكون.
-5. **تعديل تلقائي مرن للارتفاع (Auto-expanding):**
+6. **تعديل تلقائي مرن للارتفاع (Auto-expanding):**
    * يتمدد صندوق النص تلقائياً مع طول المحتوى لتوفير تجربة كتابة سلسة ومريحة، مع إمكانية تحديد الحد الأدنى والأقصى للارتفاع.
 
 ---
@@ -56,12 +63,12 @@
 # انتقل إلى مجلد المثال التجريبي
 cd example
 
-# قم بتثبيت الحزم (يفضل استخدام aube ويُدعم pnpm كذلك)
-aube install
+# قم بتثبيت الحزم
+npm install
 # أو: pnpm install
 
 # ابدأ خادم التطوير المحلي
-aube run dev
+npm run dev
 # أو: pnpm dev
 ```
 
@@ -71,15 +78,17 @@ aube run dev
 
 ### 🚀 التثبيت
 
-قم بتثبيت المكتبة مع الحزم الصديقة (peer dependencies) عبر مدير الحزم الخاص بك:
+قم بتثبيت المكتبة مع الحزم الصديقة المطلوبة (peer dependencies) عبر مدير الحزم الخاص بك:
 
 ```bash
-# باستخدام aube (موصى به)
-aube add @waqftech/markdown-editor comark @comark/react lucide-react
+# باستخدام npm
+npm install @waqftech/markdown-editor comark @comark/react lucide-react
 
 # باستخدام pnpm
 pnpm add @waqftech/markdown-editor comark @comark/react lucide-react
 ```
+
+> **ملاحظة:** `lucide-react` مطلوبة كـ peer dependency منذ الإصدار 1.2.0 ويجب تثبيتها صراحةً.
 
 ---
 
@@ -200,16 +209,23 @@ This software is dedicated as **Waqf (endowment) for the sake of Allah** to bene
    * Wrapping text in **`﴿ ﴾`** renders it as a gorgeous, styled Quranic Verse inline span in Amiri Quran font.
    * Wrapping text in **`« »`** renders it as a styled Hadith text inline span in bold Amiri serif.
    * Automatic Block Tag conversion: Translates `<aya ref="...">` and `<hadith grading="...">` blocks into semantic structural layouts with custom citation rendering.
-3. **One-Click Classical Ligatures & Symbols:**
+3. **Guided Quranic Ayah Insertion:**
+   * Type **`\`** (backslash) to open a live surah search — pick a surah, type the ayah number, and it inserts instantly.
+   * Type **`/quran`** to open a guided multi-step context menu:
+     - Pick a mode: **Single Ayah** · **Range of Ayahs** · **Full Surah**
+     - Search for a surah by name or number
+     - Enter the ayah or range — text is fetched and inserted as a block or inline based on context
+   * Direct commands also work: `/quran 2:255` · `/quran 2:1-5` · `/quran 1`
+4. **One-Click Classical Ligatures & Symbols:**
    * **`ﷺ`** — Sallallahu alayhi wa sallam (Peace be upon him)
    * **`ﷲ`** — Allah ligature
    * **`ﷻ`** — Jalla Jalaluh
    * **`﷽`** — Bismillah
    * **`۞`** — Rub el Hizb
-4. **Real-Time Preview Out-of-the-Box:**
+5. **Real-Time Preview Out-of-the-Box:**
    * Comes with an integrated, lightweight `DefaultMarkdownRenderer` utilizing the lightning-fast `comark` parsing library.
    * Seamlessly toggles between "Edit" (تحرير) and "Preview" (معاينة) states inside the same component.
-5. **Auto-Expanding Height:**
+6. **Auto-Expanding Height:**
    * Dynamically adjusts input height to fit contents as you type, keeping the interface fluid, with customizable height limits (`minHeight` and `maxHeight`).
 
 ---
@@ -222,12 +238,12 @@ This repository includes a completely self-contained interactive playground powe
 # Navigate to the example directory
 cd example
 
-# Install dependencies (aube is preferred; pnpm is also supported)
-aube install
+# Install dependencies
+npm install
 # or: pnpm install
 
 # Start the local development server
-aube run dev
+npm run dev
 # or: pnpm dev
 ```
 
@@ -237,15 +253,17 @@ Open `http://localhost:3001` in your browser to try out the editor and see real-
 
 ### 🚀 Installation
 
-Install the package and its peer dependencies via your favorite package manager:
+Install the package and its required peer dependencies:
 
 ```bash
-# Using aube (preferred)
-aube add @waqftech/markdown-editor comark @comark/react lucide-react
+# Using npm
+npm install @waqftech/markdown-editor comark @comark/react lucide-react
 
 # Using pnpm
 pnpm add @waqftech/markdown-editor comark @comark/react lucide-react
 ```
+
+> **Note:** `lucide-react` became a required peer dependency in v1.2.0 and must be installed explicitly.
 
 ---
 
