@@ -158,4 +158,16 @@ else
 fi
 
 log_success "Successfully published @waqftech/markdown-editor@v$NEW_VERSION to NPM!"
+
+# 6. Optionally deploy cf-demo
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+read -p "$(echo -e "${YELLOW}[PROMPT]${NC} Deploy cf-demo to Cloudflare Pages now? (y/N) ")" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  log_info "Step 6: Deploying cf-demo with the new package version..."
+  bash "$SCRIPT_DIR/deployDemo.sh" --update
+else
+  log_info "Skipping demo deploy. Run later with: ./scripts/deployDemo.sh --update"
+fi
+
 log_success "🎉 Release v$NEW_VERSION completed flawlessly!"

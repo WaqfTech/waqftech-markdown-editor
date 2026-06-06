@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Tailwind v4 excludes node_modules by default.
+   The editor package is symlinked via file:.., so we point
+   directly at its source to ensure all component classes are generated. */
+@source "../../src";
