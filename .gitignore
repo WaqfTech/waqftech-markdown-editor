@@ -6,4 +6,8 @@ dist
 jad/
 jad
 
+# Separate repos — kept local only, not part of this package
+kv-quran/
+cf-demo/
+
 
